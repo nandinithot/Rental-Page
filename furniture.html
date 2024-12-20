@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent N Go | Rental Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+   integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <h1>Rent N Go</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" target="_blank"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="favourite.html"><i class="fa-solid fa-heart"></i> Favorites</a></li>
+                    <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                    <li><a href="all-rentals.html"><i class="fa-solid fa-cart-arrow-down"></i> Rent Now</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." id="search-bar">
+                    <button type="button" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="cart-container">
+                    <a href="cart.html" id="cart-button"><i class="fa-solid fa-shopping-cart"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+
+    <section class="services">
+        <h2>Furniture Rental</h2>
+        <p>Explore our range of furniture for rent, including sofas, tables, beds, and more to make your space comfortable and stylish.</p>
+        <div class="services-container">
+
+            <!-- Furniture Item 1 -->
+            <div class="service">
+                <h4>Sofa Set</h4>
+                <img src="sofa.jpg" alt="sofa img">
+                <p>Comfortable sofas for your living room.</p>
+                <p><strong>Price:</strong> 300/-month</p>
+                <button onclick="addToCart('Sofa Set', 30)">Add to Cart</button>
+                <button onclick="addToFavorites('Sofa Set',30)">❤ Favorite</button>
+            </div>
+
+            <!-- Furniture Item 2 -->
+            <div class="service">
+                <h4>Dining Table</h4>
+                <img src="dinning.jpg" alt="dinning table">
+                <p>Elegant dining tables for a stylish dining area.</p>
+                <p><strong>Price:</strong> 200/-month</p>
+                <button onclick="addToCart('Dining Table', 20)">Add to Cart</button>
+                <button onclick="addToFavorites('Dining Table',20)">❤ Favorite</button>
+            </div>
+
+            <!-- Furniture Item 3 -->
+            <div class="service">
+                <h4>Bed</h4>
+                <img src="bed.avif" alt="bed image">
+                <p>Cozy and spacious bed for restful sleep.</p>
+                <p><strong>Price:</strong> 400/-month</p>
+                <button onclick="addToCart('Queen Bed', 40)">Add to Cart</button>
+                <button onclick="addToFavorites('Queen Bed',40)">❤ Favorite</button>
+            </div>
+
+            <!-- Furniture Item 4 -->
+            <div class="service">
+                <h4>Office chair</h4>
+                <img src="office.jpg">
+                <p>Ergonomic chair perfect for office.</p>
+                <p><strong>Price:</strong> 150/-month</p>
+                <button onclick="addToCart('Office Chair', 15)">Add to Cart</button>
+                <button onclick="addToFavorites('Office Chair',15)">❤ Favorite</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Rent N Go. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      // cart.js
+
+// Initialize cart data
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Function to add items to the cart and store them in localStorage
+function addToCart(item, price) {
+    cart.push({ item, price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(item + ' has been added to your cart!');
+}
+
+// Update the cart count displayed on the header
+function updateCartCount() {
+    document.getElementById("cart-count").innerText = cart.length;
+}
+
+// Function to render the cart items on the cart page
+function renderCartItems() {
+    const cartItemsList = document.getElementById("cart-items-list");
+    cartItemsList.innerHTML = ''; // Clear existing items
+
+    let totalCost = 0;
+
+    cart.forEach((cartItem, index) => {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "cart-item";
+
+        itemDiv.innerHTML = `
+            <p>${cartItem.item}</p>
+            <p>Price: $${cartItem.price}/month</p>
+            <button onclick="removeFromCart(${index})">Remove</button>`;
+
+        cartItemsList.appendChild(itemDiv);
+        totalCost += cartItem.price;
+    });
+
+    document.getElementById("total-cost").innerText = totalCost;
+}
+
+// Remove item from the cart
+function removeFromCart(index) {
+    cart.splice(index, 1); // Remove the item by index
+    localStorage.setItem("cart", JSON.stringify(cart)); // Update storage
+    renderCartItems();
+    updateCartCount();
+}
+
+// Proceed to checkout (placeholder function)
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+    alert("Proceeding to checkout!");
+    // Clear cart for demo purposes
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCartItems();
+    updateCartCount();
+}
+
+// Call functions on page load if needed
+window.onload = function () {
+    renderCartItems();
+    updateCartCount();
+};
+function addToFavorites(itemName) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            if (!favorites.includes(itemName)) {
+                favorites.push(itemName);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                alert(`${itemName}+ has been added to your favorites!`);
+            } else {
+                alert(`${itemName} is already in your favorites!`);
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent N Go | Rental Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+   integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <h1>Rent N Go</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="favourite.html"><i class="fa-solid fa-heart"></i> Favorites</a></li>
+                    <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                    <li><a href="rent.html"><i class="fa-solid fa-cart-arrow-down"></i> Rent Now</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." id="search-bar">
+                    <button type="button" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="cart-container">
+                    <a href="cart.html" id="cart-button"><i class="fa-solid fa-shopping-cart"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="services">
+        <h2>Vehicle Rental</h2>
+        <p>Discover a range of vehicles for rent, including bikes, scooters, and cars for your travel needs.</p>
+        <div class="services-container">
+
+            <!-- Vehicle Item 1 -->
+            <div class="service">
+                <h4>Bicycle</h4>
+                <p>Explore the city with our comfortable bikes.</p>
+                <p><strong>Price:</strong> $5/day</p>
+                <button onclick="addToCart('Bicycle', 5)">Add to Cart</button>
+                <button onclick="addToFavorites('Bicycle',5)">❤ Favorite</button>
+            </div>
+
+            <!-- Vehicle Item 2 -->
+            <div class="service">
+                <h4>Scooter</h4>
+                <p>Perfect for short commutes around the city.</p>
+                <p><strong>Price:</strong> $10/day</p>
+                <button onclick="addToCart('Scooter', 10)">Add to Cart</button>
+                <button onclick="addToFavorites('Scooter',10)">❤ Favorite</button>
+            </div>
+
+            <!-- Vehicle Item 3 -->
+            <div class="service">
+                <h4>Car</h4>
+                <p>Rent a car for a comfortable, hassle-free journey.</p>
+                <p><strong>Price:</strong> $50/day</p>
+                <button onclick="addToCart('Car', 50)">Add to Cart</button>
+                <button onclick="addToFavorites('Car',50)">❤ Favorite</button>
+            </div>
+
+            <!-- Vehicle Item 4 -->
+            <div class="service">
+                <h4>Motorbike</h4>
+                <p>Enjoy the thrill of riding a motorbike on your travels.</p>
+                <p><strong>Price:</strong> $20/day</p>
+                <button onclick="addToCart('Motorbike', 20)">Add to Cart</button>
+                <button onclick="addToFavorites('Motorbike',20)">❤ Favorite</button>
+            </div>
+
+            <!-- Vehicle Item 5 -->
+            <div class="service">
+                <h4>Truck</h4>
+                <p>Perfect for moving heavy loads or long journeys.</p>
+                <p><strong>Price:</strong> $80/day</p>
+                <button onclick="addToCart('Truck', 80)">Add to Cart</button>
+                <button onclick="addToFavorites('Truck',80)">❤ Favorite</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Rent N Go. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      let cart = [];
+let favorites = [];
+
+function addToCart(item, price) {
+    cart.push({ item, price });
+    document.getElementById('cart-count').innerText = cart.length;
+    alert(item + ' has been added to your cart!');
+}
+        function addToFavorites(itemName) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            if (!favorites.includes(itemName)) {
+                favorites.push(itemName);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                alert(`${itemName} has been added to your favorites!`);
+            } else {
+                alert(`${itemName} is already in your favorites!`);
+            }
+        }
+    </script>
+</body>
+</html>

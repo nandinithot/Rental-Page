@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Rental Portal | Rent N Go</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Your Rental Portal</h1>
+    </header>
+
+    <section class="portal-content">
+        <h2>Welcome, <span id="user-name">User</span>!</h2>
+        <p>Here you can manage your listed rental items.</p>
+        
+        <!-- Item Listings -->
+        <div id="item-list">
+            <!-- Dynamic item listings will go here -->
+        </div>
+    </section>
+
+    <script>
+        // Retrieve the user ID from the URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const userID = urlParams.get('user');
+
+        // Display the user's ID or name dynamically (this is for demonstration; fetch actual name from backend if possible)
+        document.getElementById("user-name").textContent = userID;
+
+        // In a real-world application, you'd use the userID to fetch and display user-specific data here
+        // e.g., list all items they have listed for rent
+    </script>
+</body>
+</html>

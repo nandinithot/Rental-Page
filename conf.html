@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Completed</title>
+    <style>.confirmation-container {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .confirmation-container h2 {
+      color: #4CAF50;
+  }
+  
+  .transaction-details {
+      margin: 20px 0;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+      font-size: 18px;
+  }
+  
+  button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+  }
+  </style>
+</head>
+<body>
+    <header>
+        <h1>Thank You for Your Payment!</h1>
+    </header>
+
+    <main>
+        <section class="confirmation-container">
+            <h2>Transaction Completed Successfully</h2>
+            <p>Your order has been processed and is on its way!</p>
+
+            <div class="transaction-details">
+                <h3>Order Summary</h3>
+                <p>Order Number: <span id="order-number"></span></p>
+                <p>Total Amount Paid: $<span id="total-amount"></span></p>
+            </div>
+
+            <button onclick="goToHome()">Back to Home</button>
+        </section>
+    </main>
+
+    <script>
+        // Generate a random order number
+        function generateOrderNumber() {
+            return 'ORD' + Math.floor(Math.random() * 1000000);
+        }
+
+        // Load transaction details
+        function loadTransactionDetails() {
+            // Retrieve total amount from local storage or previous page
+            const totalAmount = localStorage.getItem("totalAmount") || "0.00";
+            document.getElementById("total-amount").textContent = totalAmount;
+
+            // Generate and display order number
+            document.getElementById("order-number").textContent = generateOrderNumber();
+
+            // Optionally clear the cart and total amount from local storage
+            localStorage.removeItem("cart");
+            localStorage.removeItem("totalAmount");
+        }
+
+        // Redirect to homepage
+        function goToHome() {
+            window.location.href = "index.html";
+        }
+
+        // Load transaction details on page load
+        window.onload = loadTransactionDetails;
+    </script>
+</body>
+</html>

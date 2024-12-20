@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent N Go | Rental Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+   integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <h1>Rent N Go</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="favourite.html"><i class="fa-solid fa-heart"></i> Favorites</a></li>
+                    <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                    <li><a href="rent.html"><i class="fa-solid fa-cart-arrow-down"></i> Rent Now</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." id="search-bar">
+                    <button type="button" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="cart-container">
+                    <a href="cart.html" id="cart-button"><i class="fa-solid fa-shopping-cart"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="services">
+        <h2>Equipment Rental</h2>
+        <p>Rent high-quality tools and equipment for your projects, whether for home, construction, or gardening.</p>
+        <div class="services-container">
+
+            <!-- Equipment Item 1 -->
+            <div class="service">
+                <h4>Power Drill</h4>
+                <p>Reliable drills for any DIY or construction project.</p>
+                <p><strong>Price:</strong> $15/day</p>
+                <button onclick="addToCart('Power Drill', 15)">Add to Cart</button>
+                <button onclick="addToFavorites('Power Drill',15)">❤ Favorite</button>
+            </div>
+
+            <!-- Equipment Item 2 -->
+            <div class="service">
+                <h4>Lawn Mower</h4>
+                <p>Maintain your lawn with our durable lawn mowers.</p>
+                <p><strong>Price:</strong> $25/day</p>
+                <button onclick="addToCart('Lawn Mower', 25)">Add to Cart</button>
+                <button onclick="addToFavorites('Lawn Mower',25)">❤ Favorite</button>
+            </div>
+
+            <!-- Equipment Item 3 -->
+            <div class="service">
+                <h4>Pressure Washer</h4>
+                <p>Clean surfaces with ease using our powerful washers.</p>
+                <p><strong>Price:</strong> $30/day</p>
+                <button onclick="addToCart('Pressure Washer', 30)">Add to Cart</button>
+                <button onclick="addToFavorites('Pressure Washer',30)">❤ Favorite</button>
+            </div>
+
+            <!-- Equipment Item 4 -->
+            <div class="service">
+                <h4>Concrete Mixer</h4>
+                <p>Efficient mixers for any building project.</p>
+                <p><strong>Price:</strong> $40/day</p>
+                <button onclick="addToCart('Concrete Mixer', 40)">Add to Cart</button>
+                <button onclick="addToFavorites('Concrete Mixer',40)">❤ Favorite</button>
+            </div>
+
+            <!-- Equipment Item 5 -->
+            <div class="service">
+                <h4>Chainsaw</h4>
+                <p>Powerful chainsaws for cutting trees and woodwork.</p>
+                <p><strong>Price:</strong> $20/day</p>
+                <button onclick="addToCart('Chainsaw', 20)">Add to Cart</button>
+                <button onclick="addToFavorites('Chainsaw',20 )">❤ Favorite</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Rent N Go. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      let cart = [];
+let favorites = [];
+
+function addToCart(item, price) {
+    cart.push({ item, price });
+    document.getElementById('cart-count').innerText = cart.length;
+    alert(item + ' has been added to your cart!');
+}
+
+function addToFavorites(itemName) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            if (!favorites.includes(itemName)) {
+                favorites.push(itemName);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                alert(`${itemName} has been added to your favorites!`);
+            } else {
+                alert(`${itemName} is already in your favorites!`);
+            }
+        }
+
+    </script>
+</body>
+</html>

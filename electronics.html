@@ -1,0 +1,117 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent N Go | Rental Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+   integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <h1>Rent N Go</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="favourite.html"><i class="fa-solid fa-heart"></i> Favorites</a></li>
+                    <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                    <li><a href="rent.html"><i class="fa-solid fa-cart-arrow-down"></i> Rent Now</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." id="search-bar">
+                    <button type="button" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="cart-container">
+                    <a href="cart.html" id="cart-button"><i class="fa-solid fa-shopping-cart"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="services">
+        <h2>Electronics Rental</h2>
+        <p>Get the latest electronics on rent, including laptops, cameras, and projectors for personal or professional use.</p>
+        <div class="services-container">
+
+            <!-- Electronics Item 1 -->
+            <div class="service">
+                <h4>Laptop</h4>
+                <p>High-performance laptops for work or study.</p>
+                <p><strong>Price:</strong> $20/day</p>
+                <button onclick="addToCart('Laptop', 20)">Add to Cart</button>
+                <button onclick="addToFavorites('Laptop',20)">❤ Favorite</button>
+            </div>
+
+            <!-- Electronics Item 2 -->
+            <div class="service">
+                <h4>Projector</h4>
+                <p>Perfect for presentations or movie nights.</p>
+                <p><strong>Price:</strong> $15/day</p>
+                <button onclick="addToCart('Projector', 15)">Add to Cart</button>
+                <button onclick="addToFavorites('Projector',15)">❤ Favorite</button>
+            </div>
+
+            <!-- Electronics Item 3 -->
+            <div class="service">
+                <h4>DSLR Camera</h4>
+                <p>Capture high-quality photos and videos.</p>
+                <p><strong>Price:</strong> $25/day</p>
+                <button onclick="addToCart('DSLR Camera', 25)">Add to Cart</button>
+                <button onclick="addToFavorites('DSLR Camera',25)">❤ Favorite</button>
+            </div>
+
+            <!-- Electronics Item 4 -->
+            <div class="service">
+                <h4>Tablet</h4>
+                <p>Lightweight and portable tablets for entertainment or work.</p>
+                <p><strong>Price:</strong> $10/day</p>
+                <button onclick="addToCart('Tablet', 10)">Add to Cart</button>
+                <button onclick="addToFavorites('Tablet',10)">❤ Favorite</button>
+            </div>
+
+            <!-- Electronics Item 5 -->
+            <div class="service">
+                <h4>VR Headset</h4>
+                <p>Experience immersive virtual reality with the latest headsets.</p>
+                <p><strong>Price:</strong> $30/day</p>
+                <button onclick="addToCart('VR Headset', 30)">Add to Cart</button>
+                <button onclick="addToFavorites('VR Headset',30)">❤ Favorite</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Rent N Go. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+    let cart = [];
+      let favorites = [];
+      
+      function addToCart(item, price) {
+          cart.push({ item, price });
+          document.getElementById('cart-count').innerText = cart.length;
+          alert(item + ' has been added to your cart!');
+      }
+      
+      function addToFavorites(itemName) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            if (!favorites.includes(itemName)) {
+                favorites.push(itemName);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                alert(`${itemName} has been added to your favorites!`);
+            } else {
+                alert(`${itemName} is already in your favorites!`);
+            }
+        }
+      </script>
+</body>
+</html>

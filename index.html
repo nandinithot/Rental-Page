@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent N Go | Rental Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+   integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <h1>Rent N Go</h1>
+            </div>
+            <nav> 
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="favourite.html"><i class="fa-solid fa-heart"></i> Favorites</a></li>
+                    <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                    <li><a href="rent.html"><i class="fa-solid fa-cart-arrow-down"></i> Rent Now</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." id="search-bar">
+                    <button type="button" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="cart-container">
+                    <a href="cart.html" id="cart-button"><i class="fa-solid fa-shopping-cart"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--first part-->
+    <section id="carousel" class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="chairs.jpg" alt="Image 1">
+            </div>
+            <div class="carousel-slide">
+                <img src="bedroom.jpeg" alt="Image 2">
+            </div>
+            <div class="carousel-slide">
+                <img src="ac.webp" alt="Image 3">
+            </div>
+        </div>
+        <button class="carousel-button prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="carousel-button next" onclick="changeSlide(1)">&#10095;</button>
+    </section>
+
+    <!--second part-->
+    <section id="services" class="services">
+        <h2>Our Rental Services</h2>
+        <div class="services-container">
+            <div class="service">
+                <i class="fa-solid fa-chair"></i>
+                <a href="furniture.html"><h4>Furniture Rental</h4></a>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-tools"></i>
+                <a href="equipments.html"><h4>Equipment Rental</h4></a>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-bicycle"></i>
+                <a href="vehicle.html"><h4>Vehicle Rental</h4></a>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-laptop"></i>
+                <a href="electronics.html"><h4>Electronics Rental</h4></a>
+            </div>
+        </div>
+    
+    <!-- Newsletter Signup -->
+    <section class="newsletter">
+        <h2>Stay Updated!</h2>
+        <p>Subscribe to our newsletter for the latest updates and offers.</p>
+        <input type="email" placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Rent N Go. All Rights Reserved.</p>
+        <div class="footer-nav">
+            <ul>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+                <li><a href="service.html">Services</a></li>
+            </ul>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+    <script>
+        let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const totalSlides = slides.length;
+
+// Function to change slide based on index
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.style.transform = `translateX(${(i - index) * 100}%)`;
+    });
+}
+
+// Automatically change slides every 3 seconds
+setInterval(() => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}, 3000); // 3000 milliseconds = 3 seconds
+
+// Manual navigation
+function changeSlide(direction) {
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+}
+
+// Initialize first slide
+showSlide(currentSlide);
+
+    // Rent Now button functionality
+    document.getElementById('rent-now-button').addEventListener('click', () => {
+        window.location.href = 'all-rentals.html';
+    });
+
+    // Example cart count functionality (this could be replaced by actual logic)
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartCount = document.querySelector('.cart-count');
+        cartCount.textContent = '3';  // Sample item count in cart
+    });
+        // cart.js
+  
+  // Initialize cart data
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  // Function to add items to the cart and store them in localStorage
+  function addToCart(item, price) {
+      cart.push({ item, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+      alert(item + ' has been added to your cart!');
+  }
+  
+  // Update the cart count displayed on the header
+  function updateCartCount() {
+      document.getElementById("cart-count").innerText = cart.length;
+  }
+  
+  // Function to render the cart items on the cart page
+  function renderCartItems() {
+      const cartItemsList = document.getElementById("cart-items-list");
+      cartItemsList.innerHTML = ''; // Clear existing items
+  
+      let totalCost = 0;
+  
+      cart.forEach((cartItem, index) => {
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "cart-item";
+  
+          itemDiv.innerHTML = `
+              <p>${cartItem.item}</p>
+              <p>Price: $${cartItem.price}/month</p>
+              <button onclick="removeFromCart(${index})">Remove</button>
+          `;
+  
+          cartItemsList.appendChild(itemDiv);
+          totalCost += cartItem.price;
+      });
+  
+      document.getElementById("total-cost").innerText = totalCost;
+  }
+  
+  // Remove item from the cart
+  function removeFromCart(index) {
+      cart.splice(index, 1); // Remove the item by index
+      localStorage.setItem("cart", JSON.stringify(cart)); // Update storage
+      renderCartItems();
+      updateCartCount();
+  }
+  
+  // Proceed to checkout (placeholder function)
+  function checkout() {
+      if (cart.length === 0) {
+          alert("Your cart is empty!");
+          return;
+      }
+      alert("Proceeding to checkout!");
+      // Clear cart for demo purposes
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCartItems();
+      updateCartCount();
+  }
+  
+  // Call functions on page load if needed
+  window.onload = function () {
+      renderCartItems();
+      updateCartCount();
+  };
+    function toggleChat() {
+        const chatWindow = document.getElementById("chatbot-window");
+        chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
+    }
+
+    function sendMessage(event) {
+        if (event.key === "Enter") {
+            const input = document.getElementById("chat-input");
+            const message = input.value;
+            if (message.trim() !== "") {
+                displayMessage(message, 'user-message');
+                input.value = '';
+                // Simulate bot response
+                setTimeout(() => {
+                    displayMessage("Thank you for your message! How can we assist you?", 'bot-message');
+                }, 1000);
+            }
+        }
+    }
+
+    function displayMessage(message, className) {
+        const messagesContainer = document.getElementById("chatbot-messages");
+        const messageElement = document.createElement("p");
+        messageElement.className = className;
+        messageElement.textContent = message;
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
+    }
+    function addToFavorites(itemName, itemPrice) {
+    // Retrieve existing favorites or initialize an empty array
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    
+    // Add new item to the favorites list
+    favorites.push({ name: itemName, price: itemPrice });
+    
+    // Save updated list back to local storage
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    
+    // Alert confirmation
+    alert(itemName + " has been added to favorites!");
+}
+    </script>
+</body>
+</html>

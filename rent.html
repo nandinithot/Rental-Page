@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Your Item | Rent N Go</title>
+    
+    <style>/* General Styling */
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          font-family: Arial, sans-serif;
+        }
+        
+        body {
+          background-color: #f7f7f7;
+          color: #333;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px;
+        }
+        
+        /* Header */
+        header {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        
+        header h1 {
+          font-size: 2em;
+          margin-bottom: 10px;
+        }
+        
+        header p {
+          color: #555;
+        }
+        
+        /* Form Container */
+        .form-container {
+          background-color: #fff;
+          padding: 20px;
+          width: 100%;
+          max-width: 500px;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Form Labels */
+        label {
+          font-weight: bold;
+          margin-top: 10px;
+          display: block;
+          color: #333;
+        }
+        
+        /* Form Inputs */
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+          width: 100%;
+          padding: 10px;
+          margin-top: 5px;
+          margin-bottom: 15px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 1em;
+        }
+        
+        /* Textarea */
+        textarea {
+          resize: vertical;
+        }
+        
+        /* File Upload */
+        input[type="file"] {
+          border: none;
+          margin-bottom: 15px;
+        }
+        
+        /* Submit Button */
+        button[type="submit"] {
+          width: 100%;
+          padding: 12px;
+          background-color: #4CAF50;
+          color: #fff;
+          font-size: 1em;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+        
+        button[type="submit"]:hover {
+          background-color: #45a049;
+        }
+        </style>
+</head>
+<body>
+    <header>
+        <h1>Rent Out Your Item</h1>
+        <p>Fill out the details to list your item for rent</p>
+    </header>
+
+    <section class="form-container">
+        <form id="rent-item-form" action="#" method="post">
+            <!-- Item Category -->
+            <label for="category">Select Category:</label>
+            <select id="category" name="category" required>
+                <option value="" disabled selected>Choose a category</option>
+                <option value="furniture">Furniture</option>
+                <option value="electronics">Electronics</option>
+                <option value="equipment">Equipment</option>
+                <option value="vehicle">Vehicle</option>
+                <option value="other">Other</option>
+            </select>
+
+            <!-- Item Name -->
+            <label for="item-name">Item Name:</label>
+            <input type="text" id="item-name" name="item_name" placeholder="Enter item name" required>
+
+            <!-- Item Description -->
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" placeholder="Describe your item..." required></textarea>
+
+            <!-- Condition -->
+            <label for="condition">Condition:</label>
+            <select id="condition" name="condition" required>
+                <option value="" disabled selected>Select condition</option>
+                <option value="new">New</option>
+                <option value="like-new">Like New</option>
+                <option value="good">Good</option>
+                <option value="fair">Fair</option>
+                <option value="used">Used</option>
+            </select>
+
+            <!-- Rental Price -->
+            <label for="price">Rental Price (per day):</label>
+            <input type="number" id="price" name="price" placeholder="Enter price per day" required>
+
+            <!-- Upload Images -->
+            <label for="images">Upload Images:</label>
+            <input type="file" id="images" name="images[]" accept="image/*" multiple>
+
+            <!-- Submit Button -->
+           <button type="submit"> <a href="profile.html">Submit Listing</a></button>
+        </form>
+    </section>
+    <script>
+      document.getElementById("rent-item-form").addEventListener("submit", function(event) {
+            event.preventDefault();  // Prevents the form's default submission behavior
+
+            // Assuming the user has a unique identifier or username
+            const userID = "user123";  // Replace this with dynamic ID retrieval (e.g., from backend/session)
+
+            // Redirect to the user's rental portal
+            window.location.href =`profile.html?user=${userID}`;
+        });
+    </script>
+</body>
+</html>

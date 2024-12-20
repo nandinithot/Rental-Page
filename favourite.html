@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites | Rent N Go</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
+   integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <style>/* General styling for favorites page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }/* General styling for favorites page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Favorites Container */
+    .favorites-container h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .favorite-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .favorite-item p {
+      margin: 0;
+    }
+    
+    /* Action Buttons */
+    .favorite-item button {
+      margin-left: 10px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s;
+    }
+    
+    .favorite-item button:first-of-type {
+      background-color: #f44336;
+      color: white;
+    }
+    
+    .favorite-item button:first-of-type:hover {
+      background-color: #d32f2f;
+    }
+    
+    .favorite-item button:last-of-type {
+      background-color: #4caf50;
+      color: white;
+    }
+    
+    .favorite-item button:last-of-type:hover {
+      background-color: #388e3c;
+    }
+    
+    .reset-btn {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+    
+    .reset-btn:hover {
+      background-color: #d32f2f;
+    }
+    
+    
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Favorites Container */
+    .favorites-container h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .favorite-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .favorite-item p {
+      margin: 0;
+    }
+    
+    /* Action Buttons */
+    .favorite-item button {
+      margin-left: 10px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s;
+    }
+    
+    .favorite-item button:first-of-type {
+      background-color: #f44336;
+      color: white;
+    }
+    
+    .favorite-item button:first-of-type:hover {
+      background-color: #d32f2f;
+    }
+    
+    .favorite-item button:last-of-type {
+      background-color: #4caf50;
+      color: white;
+    }
+    
+    .favorite-item button:last-of-type:hover {
+      background-color: #388e3c;
+    }
+    
+    .reset-btn {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+    
+    .reset-btn:hover {
+      background-color: #d32f2f;
+    }</style>
+</head>
+<body>
+
+    <header>
+        <h1>Your Favorites</h1>
+    </header>
+
+    <main>
+        <!-- Favorites Container -->
+        <div class="favorites-container">
+            <h2>Items in Your Favorites</h2>
+            <div id="favorites-items-list">
+                <!-- Favorite items will be dynamically added here -->
+            </div>
+            <div class="favorites-summary">
+                <button class="btn reset-btn" onclick="resetFavorites()">Reset Favorites</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Retrieve favorites and cart data from localStorage
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Function to render favorite items
+        function renderFavorites() {
+            const favoritesList = document.getElementById("favorites-items-list");
+            favoritesList.innerHTML = ''; // Clear existing items
+
+            favorites.forEach((favoriteItem, index) => {
+                const itemDiv = document.createElement("div");
+                itemDiv.className = "favorite-item";
+
+                itemDiv.innerHTML = `
+                    <p>${favoriteItem.item}</p>
+                    <p>Price: $${favoriteItem.price}/month</p>
+                    <button onclick="removeFromFavorites(${index})">Remove from Favorites</button>
+                    <button onclick="addToCart(${index})">Add to Cart</button>
+                `;
+
+                favoritesList.appendChild(itemDiv);
+            });
+        }
+
+        // Function to remove an item from favorites
+        function removeFromFavorites(index) {
+            favorites.splice(index, 1); // Remove item by index
+            localStorage.setItem("favorites", JSON.stringify(favorites)); // Update localStorage
+            renderFavorites();
+        }
+
+        // Function to add an item from favorites to the cart
+        function addToCart(index) {
+            const itemToAdd = favorites[index];
+            cart.push(itemToAdd); // Add item to cart
+            localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+            alert(itemToAdd.item + ' has been added to your cart!');
+        }
+
+        // Function to reset the favorites list
+        function resetFavorites() {
+            favorites = [];
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+            renderFavorites();
+            alert("Favorites have been reset.");
+        }
+
+        // Load favorites on page load
+        window.onload = function () {
+            renderFavorites();
+        };
+    </script>
+
+</body>
+</html>

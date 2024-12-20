@@ -1,0 +1,366 @@
+/* Reset basic styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+}
+/* Header */
+.header {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.header .logo h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+.header .nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.header .nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.header .nav-links li a:hover {
+  color: #f8b400;
+}
+
+.header .header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header .search-container {
+  position: relative;
+}
+
+.header .search-container input {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+}
+
+.header .search-container button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.header .cart-container {
+  position: relative;
+}
+
+.header .cart-container .cart-count {
+  background-color: #f8b400;
+  color: #fff;
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+}
+
+
+/* Carousel */
+.carousel {
+  position: relative;
+  max-width: 1200px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Carousel navigation buttons */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  z-index: 5;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.service img {
+  border: 4px solid #ddd; /* Light gray border around the image */
+  border-radius: 8px;     /* Rounded corners */
+  padding: 5px;           /* Space between image and border */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+  width: 100%;            /* Ensures the image fills the container */
+  object-fit: cover;      /* Scales image without distortion */
+  max-height: 200px;      /* Set a maximum height to keep layout consistent */
+}
+
+
+/* Sections styling */
+.services, .about, .favorites, .profile, .contact {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.services-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Service card */
+.service {
+  flex: 1 1 200px;
+  text-align: center;
+  padding: 20px;
+  margin: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service i {
+  font-size: 40px;
+  color: #ffa500;
+  margin-bottom: 10px;
+}
+
+.service h4 {
+  font-size: 24px;
+  margin-top: 10px;
+  color: #333;
+}
+
+.service button {
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: none;
+  background-color: #ffa500;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.service button:hover {
+  background-color: #e69500;
+}
+/* Chatbot Styles */
+.chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.chatbot-icon {
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.chatbot-window {
+  width: 300px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 60px;
+  right: 0;
+}
+
+.chatbot-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatbot-messages {
+  padding: 10px;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.chatbot-messages p {
+  margin: 5px 0;
+}
+
+.chatbot-messages .user-message {
+  text-align: right;
+  color: #007bff;
+}
+
+.chatbot-messages .bot-message {
+  text-align: left;
+  color: #333;
+}
+
+#chat-input {
+  border: none;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 20px;
+}/* Newsletter Styles */
+.newsletter {
+  padding: 20px;
+  text-align: center;
+  background-color: #007bff;
+  color: white;
+}
+
+.newsletter input {
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 20px;
+}
+
+footer nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+footer nav ul li a {
+  color: #ffa500;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer nav ul li a:hover {
+  color: #fff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .carousel {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .services-container {
+    flex-direction: column;
+  }
+
+  footer nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service {
+    margin: 10px 0;
+  }
+}
